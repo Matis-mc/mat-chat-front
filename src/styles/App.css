@@ -1,0 +1,47 @@
+html, body {
+  height: 100%;
+  background-color: cornflowerblue;
+}
+
+.App {
+  width: auto;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 7% 22% 29% 19% 18% 1%;
+  grid-template-rows: 2% 18% 20% 20% 20% 18% 2%;
+  column-gap: 1%;
+}
+
+.lat-menu-start{
+  width: auto;
+  height: auto;
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 2;
+  grid-row-end: 7;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.core-div {
+  width: auto;
+  height: auto;
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 7;
+  background-color: aliceblue;
+  border-radius: 25px;
+}
+
+.lat-menu-end{
+  width: auto;
+  height: auto;
+  grid-column-start: 5;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 7;
+  background-color: aliceblue;
+  border-radius: 20px;
+}
+
