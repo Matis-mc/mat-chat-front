@@ -1,12 +1,20 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Form, Formik, Field } from "formik";
 import "../../styles/utils/search-bar.css"
 
-function SearchBar(props){
+const SearchBar = ({handleClick}) => {
    
     return(
         <div className="sb-container">
-            <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" className="sb-icon"/>
-            <input type="text" placeholder="Search..."/>
+            <Formik
+                initialValues={{name:""}}
+                onSubmit={async (values) => {
+                    await handleClick(values.name)
+                }}>
+                    <Form>
+                        <Field name="name" placeholder="Search..."/>
+                        <button icon="fa-solid fa-magnifying-glass" type="submit" className="sb-icon">Submit</button>
+                    </Form>
+                </Formik>
         </div>
     )
 }
