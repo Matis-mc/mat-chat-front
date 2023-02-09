@@ -1,21 +1,23 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Chat from '../pages/Chat'
+import Login from '../pages/Login'
+import Subscribe from '../pages/Subscribe'
 import '../styles/App.css';
-import ContactLeftPannel from './contact-left-pannel/ContactLeftPannel';
-import CoreComponent from './CoreComponent';
-import NavBar from './nav-bar/NavBar';
+import AuthenticationManager from './utils/AuthenticationManager';
 
 function App() {
 
+  authenticationManager = new AuthenticationManager();
 
     return (
-    <div className="App">
-      <div className="lat-menu-start">
-        <NavBar></NavBar>
-      </div>
-      <div className="core-div">
-        <CoreComponent></CoreComponent>
-      </div>
-      <div className="lat-menu-end"></div>
-    </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Chat authenticationManager = { authenticationManager } />}>
+            <Route path="login" element={<Login authenticationManager = { authenticationManager } />}/>
+            <Route path="subscribe" element={<Subscribe authenticationManager = { authenticationManager } />}/>l
+          </Route>
+        </Routes>
+      </BrowserRouter>
   );
 }
 

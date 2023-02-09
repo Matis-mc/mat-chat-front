@@ -1,12 +1,12 @@
-import "../../styles/contact-left-pannel/contact-left-pannel.css"
+import "../../../styles/core-component/contact-left-pannel/contact-left-pannel.css"
 import AddContact from "./AddContact";
 import ContactHeader from "./ContactHeader";
 import Contact from "./Contact";
 import { useEffect, useState } from "react";
-import AddContactForm from "../utils/AddContactForm";
-import axios from 'axios';
+import AddContactForm from "./AddContactForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
+import ChatService from "../../../service/ChatService";
 
 function ContactLeftPannel(props){
     //todo : header
@@ -19,8 +19,7 @@ function ContactLeftPannel(props){
     useEffect(() => fetchData, [])
 
     const fetchData = () => {
-        console.log("fetch data called")
-        axios("http://localhost:3030/contact/user/0")
+        ChatService.getContactByIdUser(0)
         .then((response) => {
             setContacts(response.data.contacts);
             setError(null);
@@ -39,8 +38,8 @@ function ContactLeftPannel(props){
 
         return(
         <div className="ctc-left-pannel-div">
-            <AddContact handleClick={addUserClick}></AddContact>
-            {openAddUserModal ? <AddContactForm/> : <ContactHeader/>}
+            <AddContact handleClick={addUserClick} data-testid="add-ctc-comp"></AddContact>
+            {openAddUserModal ? <AddContactForm /> : <ContactHeader data-cy="contact-header"/>}
             {error == null ?
             <div className="scrollable-view">
                 {contacts.map(contact => <Contact key={contact.name+contact.surname} contact={contact}/>)}

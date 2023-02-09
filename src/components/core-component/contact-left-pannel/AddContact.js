@@ -1,4 +1,4 @@
-import "../../styles/contact-left-pannel/add-contact.css"
+import "../../../styles/core-component/contact-left-pannel/add-contact.css"
 
 
 const AddContact = ({handleClick}) => {

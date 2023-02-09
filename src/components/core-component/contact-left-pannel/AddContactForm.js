@@ -1,4 +1,4 @@
-import "../../styles/utils/add-form-component.css"
+import "../../../styles/utils/add-form-component.css"
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 export const AddContactForm = () => {
@@ -11,7 +11,7 @@ export const AddContactForm = () => {
             validate={values => {
                 const errors = {};
                 if (!values.email) {
-                errors.email = 'Oups, email required ! ';
+                errors.email = 'Oups, email required !';
                 } else if (
                 !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
                 ) {
@@ -28,11 +28,11 @@ export const AddContactForm = () => {
             >
             {({ isSubmitting }) => (
                 <Form>
-                <Field type="email" name="email" className="form-field"/>
-                <button className="submit-btn" type="submit" disabled={isSubmitting}>
-                    Submit
-                </button>
-                <ErrorMessage name="email" component="div" className="error-message" />
+                    <Field data-cy="input-field" type="email" name="email" className="form-field"/>
+                    <button data-cy="submit-button" className="submit-btn" type="submit" disabled={isSubmitting}>
+                        Submit
+                    </button>
+                    <ErrorMessage data-cy="error-field" name="email" component="div" className="error-message-header" />
                 </Form>
             )}
             </Formik>

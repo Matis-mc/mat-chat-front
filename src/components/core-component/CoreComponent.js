@@ -1,4 +1,4 @@
-import "../styles/core-component.css"
+import "../../styles/core-component/core-component.css"
 import ContactLeftPannel from "./contact-left-pannel/ContactLeftPannel";
 
 function CoreComponent(){

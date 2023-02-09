@@ -1,6 +1,6 @@
 .ctc-left-pannel-div{
     width: auto;
-    height: max-content;
+    height: 90%;
     background-color: white;
     padding: 20px;
     margin: 20px;
@@ -10,9 +10,12 @@
     flex-direction: column;
 }
 
-.scrollavle-view{
-    overflow: hidden;
-    height: min-content;
+.scrollable-view{
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
     padding-bottom: 10px;
     margin-bottom: 20px;
 }

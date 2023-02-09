@@ -1,4 +1,4 @@
-import "../../styles/contact-left-pannel/contact-info-description.css"
+import "../../../styles/core-component/contact-left-pannel/contact-info-description.css"
 
 function ContactInfoDescription(props){
 
