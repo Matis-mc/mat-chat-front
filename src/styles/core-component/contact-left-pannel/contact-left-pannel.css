@@ -38,3 +38,10 @@
     width: 30px;
     cursor: pointer;
 }
+
+.refresh-text{
+    color: cornflowerblue;
+    font-weight: bold;
+    cursor: pointer;
+    align-self: center;
+}

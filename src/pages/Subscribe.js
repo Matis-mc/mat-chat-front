@@ -2,16 +2,19 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import "../styles/pages/subscribe.css"
 import AuthenticationManager from "../components/utils/AuthenticationManager";
 import UserService from "../service/UserService";
+import { useNavigate } from "react-router-dom";
 
 
 function Subscribe(props){
+
+  const navigate = useNavigate();
 
   const submitSubscription = (values) => {
     UserService.subscribe(values.name, values.surname, values.email, values.password)
     .then((response) => {
       console.log(response);
       AuthenticationManager.updateToken(response.data.token);
-      alert("success : " + JSON.stringify(response, null, 2))
+      navigate("/");
     })
     .catch((error) => {
       console.error(JSON.stringify(error, null, 2));
@@ -47,6 +50,9 @@ function Subscribe(props){
             <ErrorMessage name="email" component="div"></ErrorMessage>
           </Form>
         </Formik>
+
+        <p onClick={() => navigate("/login")} className="redirect-link">You have an account ? Click here !</p>
+
       </div>
   </div>)
 }

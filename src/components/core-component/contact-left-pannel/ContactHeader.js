@@ -1,13 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import ChatService from "../../../service/ChatService";
+import ChatService from "../../../service/ContactService";
 import "../../../styles/core-component/contact-left-pannel/contact-header.css"
 import SearchBar from "../../utils/SearchBar";
 
 
 function ContactHeader(props){
 
+
+    //todo : search in contact
     const searchContact = (value) => {
-        ChatService.searchContactByEmail(value.email)
+        ChatService.searchContactByEmail(value)
         .then((response) => {
             console.log(response);
         })

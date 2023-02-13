@@ -1,7 +1,7 @@
 import "../../../styles/utils/add-form-component.css"
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
-export const AddContactForm = () => {
+export const AddContactForm = ({handleOnSubmit}) => {
 
     return (
         <div className="form-group">
@@ -19,18 +19,13 @@ export const AddContactForm = () => {
                 }
                 return errors;
             }}
-            onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                }, 400);
-            }}
+            onSubmit={(value) => handleOnSubmit(value.email)}
             >
             {({ isSubmitting }) => (
                 <Form>
                     <Field data-cy="input-field" type="email" name="email" className="form-field"/>
                     <button data-cy="submit-button" className="submit-btn" type="submit" disabled={isSubmitting}>
-                        Submit
+                        Add
                     </button>
                     <ErrorMessage data-cy="error-field" name="email" component="div" className="error-message-header" />
                 </Form>

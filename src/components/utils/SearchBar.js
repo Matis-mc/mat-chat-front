@@ -12,7 +12,7 @@ const SearchBar = ({handleClick}) => {
                 }}>
                     <Form>
                         <Field name="name" placeholder="Search..."/>
-                        <button icon="fa-solid fa-magnifying-glass" type="submit" className="sb-icon">Submit</button>
+                        <button icon="fa-solid fa-magnifying-glass" type="submit" className="sb-icon">Search</button>
                     </Form>
                 </Formik>
         </div>

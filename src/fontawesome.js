@@ -14,6 +14,7 @@ import { faMagnifyingGlass,
          faArrowRightFromBracket,
          faLayerGroup,
          faGear,
+         faUser,
          faArrowsRotate,
          faTable,
          faPlus,
@@ -38,7 +39,7 @@ library.add(
     faTableColumns,
     faPlusSquare,
     faPlus,
-    faArrowsRotate
+    faArrowsRotate, faUser
 );
 
 export default library;

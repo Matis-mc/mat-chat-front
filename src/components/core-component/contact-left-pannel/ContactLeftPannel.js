@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import AddContactForm from "./AddContactForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
-import ChatService from "../../../service/ChatService";
+import ContactService from "../../../service/ContactService";
 
 function ContactLeftPannel(props){
     //todo : header
@@ -19,30 +19,43 @@ function ContactLeftPannel(props){
     useEffect(() => fetchData, [])
 
     const fetchData = () => {
-        ChatService.getContactByIdUser(0)
-        .then((response) => {
-            setContacts(response.data.contacts);
-            setError(null);
-        })
-        .catch((error) => {
-            setError(error);
-        })
-    
+        ContactService.getContactsByIdUser()
+            .then((response) => {
+                setContacts(response.data);
+                setError(null);
+            })
+            .catch((error) => {
+                setError(error);
+            })
     }
-
+   
     const addUserClick = (event) => {
         setOpenAddUserModal(!openAddUserModal);
     }
 
-    console.log(contacts);
+    const handleAddUserSubmit = (value) => {
+        console.log("add user submiting");
+        ContactService.addContactToUserByEmail(value).then(
+            (res) => {
+                console.log(res);
+                fetchData();
+            }
+        ).catch(
+            (err) => {
+                console.log(err);
+                alert(err);
+            }
+        )
+    }
 
         return(
         <div className="ctc-left-pannel-div">
             <AddContact handleClick={addUserClick} data-testid="add-ctc-comp"></AddContact>
-            {openAddUserModal ? <AddContactForm /> : <ContactHeader data-cy="contact-header"/>}
+            {openAddUserModal ? <AddContactForm handleOnSubmit={handleAddUserSubmit}/> : <ContactHeader data-cy="contact-header"/>}
             {error == null ?
             <div className="scrollable-view">
-                {contacts.map(contact => <Contact key={contact.name+contact.surname} contact={contact}/>)}
+                <p onClick={fetchData} className="refresh-text">Refresh</p>
+                {contacts.map((contact) => <Contact key={contact.name+contact.surname} contact={contact}/>)}
             </div> : <div className="error-network-div">
                 <FontAwesomeIcon 
                 className = "refresh-icon" 

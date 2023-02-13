@@ -2,17 +2,19 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import "../styles/pages/login.css"
 import AuthenticationManager from "../components/utils/AuthenticationManager";
 import UserService from "../service/UserService";
+import { useNavigate } from "react-router-dom";
 
 function Login (props){
 
+    const navigate = useNavigate();
 
     const submitLogin = (values) => {
         UserService.login(values.email, values.password).then((response) => {
             AuthenticationManager.updateToken(response.data.token);
-            alert(response)
+            navigate("/");
         }).catch((error) => {
-            console.error(error);
-            alert(error);
+            console.error(JSON.stringify(error, null, 2));
+            alert("Impossible de se connecter : " + JSON.stringify(error, null, 2));
         })
     }
 
@@ -41,6 +43,8 @@ function Login (props){
                     <ErrorMessage name="email" component="div"></ErrorMessage>
                 </Form>
             </Formik>
+
+            <p onClick={() => navigate("/subscribe")} className="redirect-link">No subscription ? Click here !</p>
         </div>
     </div>
     )

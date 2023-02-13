@@ -34,6 +34,11 @@
     flex-direction: column;
 }
 
+.redirect-link{
+    color: cornflowerblue;
+    cursor: pointer;
+}
+
 button {
     border-radius: 30px;
     margin: 20px;

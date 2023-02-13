@@ -7,8 +7,7 @@ class AuthenticationManager {
     _user = null;
     _userChangeReg = [];
     userChanged;
-
-
+    
 
     tokenUpdated(newToken) {
         this._token = newToken;
@@ -71,6 +70,22 @@ class AuthenticationManager {
         }
     }
 
+    getId() {
+        if(this._user){
+            return this._user.user_id;
+        } else {
+            return ""
+        }
+    }
+
+    getEmail(){
+        if(this._user){
+            return this._user.email;
+        } else {
+            return ""
+        }
+    }
+
     updateToken(token) {
         this._token = token;
         this._processToken(token);
@@ -87,7 +102,7 @@ class AuthenticationManager {
         if (!result) {
             return "";
         }
-        return JSON.parse(result).accessToken;
+        return JSON.parse(result);
     }
 
     getRefreshToken() {
@@ -96,6 +111,14 @@ class AuthenticationManager {
             return "";
         }
         return JSON.parse(result).refreshToken;
+    }
+
+    isLoggedIn(){
+        let result = window.localStorage.getItem(tokenKey);
+        if (!result) {
+            return false;
+        }
+        return true;
     }
 
     logout() {
