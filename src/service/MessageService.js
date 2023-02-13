@@ -1,6 +1,5 @@
 import axios from "axios";
 import AuthenticationManager from "../components/utils/AuthenticationManager";
-import MatChatService from "./MatChatService";
 
 const API_URL = "http://localhost:3030/message/";
 
@@ -15,21 +14,21 @@ class MessageService {
         'x-access-token': `${this.token}`
     }
 
-    getAllMessageFromContact(_emailContact){
+    getAllMessageFromContact(_idContact){
         return axios.post(API_URL + this.idUser, 
         {
-            emailContact: _emailContact
+            idContact: _idContact
         },
         {
             headers: this._headers
         })
     }
 
-    postMessageToContact(content, _emailContact, _tag){
+    postMessageToContact(content, _idContact, _tag){
         return axios.post(API_URL, 
             {
-                idUSer : this.idUser,
-                emailContact : _emailContact,
+                idUser : this.idUser,
+                idContact : _idContact,
                 content: content,
                 tag:_tag
             },
@@ -37,6 +36,6 @@ class MessageService {
                 headers: this._headers
             })
     }
-
-
 }
+
+export default new MessageService();

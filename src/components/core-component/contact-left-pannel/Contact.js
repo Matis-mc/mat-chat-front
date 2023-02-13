@@ -5,7 +5,6 @@ import Avatar from "boring-avatars";
 
 function Contact(props){
 
-
     const [active, setActive] = useState(false);
     var classActive = active?"-active":"";
 
