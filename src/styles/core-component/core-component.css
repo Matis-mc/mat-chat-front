@@ -2,7 +2,7 @@
     height: 100%;
     display: grid;
     grid-template-columns: 30% 70%;
-    grid-template-rows: 80% 20%;
+    grid-template-rows: 15% 70% 15%;
     overflow: hidden;
 }
 
@@ -15,15 +15,15 @@ h2 {
     grid-column-start: 1;
     grid-column-end: 1;
     grid-row-start:1 ;
-    grid-row-end: 3;
+    grid-row-end: 4;
 }
 
 .message-pannel{
     height: 100%;
     grid-column-start: 2;
     grid-column-end: 2;
-    grid-row-start:1 ;
-    grid-row-end: 1;
+    grid-row-start:2 ;
+    grid-row-end: 2;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
@@ -33,8 +33,8 @@ h2 {
 .editor-pannel{
     grid-column-start: 2;
     grid-column-end: 2;
-    grid-row-start:2 ;
-    grid-row-end: 2;
+    grid-row-start:3 ;
+    grid-row-end: 3;
     align-self: center;
     padding: 20px
 }

@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
 import ContactService from "../../../service/ContactService";
 
-function ContactLeftPannel(props){
+const ContactLeftPannel = ({handleContactClick}) => {
     //todo : header
     //todo searchBAr
 
@@ -48,23 +48,28 @@ function ContactLeftPannel(props){
         )
     }
 
-        return(
-        <div className="ctc-left-pannel-div">
-            <AddContact handleClick={addUserClick} data-testid="add-ctc-comp"></AddContact>
-            {openAddUserModal ? <AddContactForm handleOnSubmit={handleAddUserSubmit}/> : <ContactHeader data-cy="contact-header"/>}
-            {error == null ?
-            <div className="scrollable-view">
-                <p onClick={fetchData} className="refresh-text">Refresh</p>
-                {contacts.map((contact) => <Contact key={contact.name+contact.surname} contact={contact}/>)}
-            </div> : <div className="error-network-div">
-                <FontAwesomeIcon 
-                className = "refresh-icon" 
-                icon = {faArrowsRotate} 
-                onClick = {fetchData}/>
-                <p className = "error-network-message">{error.message}</p>
-            </div>
+    return(
+    <div className="ctc-left-pannel-div">
+        <AddContact handleClick={addUserClick} data-testid="add-ctc-comp"></AddContact>
+        {openAddUserModal ? <AddContactForm handleOnSubmit={handleAddUserSubmit}/> : <ContactHeader data-cy="contact-header"/>}
+        {error == null ?
+        <div className="scrollable-view">
+            <p onClick={fetchData} className="refresh-text">Refresh</p>
+            {contacts.map(
+                (contact) => 
+                <Contact key={contact.name+contact.surname}
+                contact={contact}
+                onContactClick={handleContactClick}/>)
             }
+        </div> : <div className="error-network-div">
+            <FontAwesomeIcon 
+            className = "refresh-icon" 
+            icon = {faArrowsRotate} 
+            onClick = {fetchData}/>
+            <p className = "error-network-message">{error.message}</p>
         </div>
+        }
+    </div>
     )
 
 }

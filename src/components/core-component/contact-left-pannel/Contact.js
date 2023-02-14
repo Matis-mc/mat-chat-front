@@ -1,15 +1,12 @@
-import { useState } from "react";
 import "../../../styles/core-component/contact-left-pannel/contact.css"
 import ContactInfoDescription from "./ContactInfoDescription";
 import Avatar from "boring-avatars";
 
-function Contact(props){
+const Contact = (props) => {
 
-    const [active, setActive] = useState(false);
-    var classActive = active?"-active":"";
 
     return(
-        <div className={"ctc-div"+classActive} onClick = { () => {setActive(!active); console.log("click click")}} >
+        <div className={"ctc-div"} onClick={() => props.onContactClick(props.contact)} >
             <Avatar
             size={50}
             name={props.contact.email}
