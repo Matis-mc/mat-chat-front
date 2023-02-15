@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
 import ContactService from "../../../service/ContactService";
 
-const ContactLeftPannel = ({handleContactClick}) => {
+const ContactLeftPannel = () => {
     //todo : header
     //todo searchBAr
 
@@ -58,8 +58,7 @@ const ContactLeftPannel = ({handleContactClick}) => {
             {contacts.map(
                 (contact) => 
                 <Contact key={contact.name+contact.surname}
-                contact={contact}
-                onContactClick={handleContactClick}/>)
+                contact={contact}/>)
             }
         </div> : <div className="error-network-div">
             <FontAwesomeIcon 

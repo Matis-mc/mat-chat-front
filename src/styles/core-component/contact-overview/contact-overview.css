@@ -1,0 +1,23 @@
+.contact-overview-div{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    height: 85%;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 20px;
+    background-color: white;
+    padding-left: 25px;
+    box-shadow: rgb(0 0 0 / 10%) 0px 20px 25px -5px, rgb(0 0 0 / 4%) 0px 10px 10px -5px;
+}
+
+.item {
+    margin-right: 30px;
+    margin-left: 30px;
+}
+
+.no-conv-item{
+    color: cornflowerblue;
+}

@@ -18,6 +18,14 @@ h2 {
     grid-row-end: 4;
 }
 
+.contact-message-overview{
+    height: 100%;
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start:1 ;
+    grid-row-end: 1;
+}
+
 .message-pannel{
     height: 100%;
     grid-column-start: 2;

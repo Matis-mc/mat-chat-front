@@ -1,44 +1,43 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { store } from "../../redux/store";
 import MessageService from "../../service/MessageService";
 import "../../styles/core-component/core-component.css"
 import ContactLeftPannel from "./contact-left-pannel/ContactLeftPannel";
+import ContactOverview from "./contact-overview/ContactOverview";
 import ConversationView from "./message-editor/ConversationView";
 import MessageEditor from "./message-editor/MessageEditor";
 
 function CoreComponent(){
 
-    const [messages, setMessages] = useState([]);
-    const [contactSelected, setContactSelected] = useState({})
+    const contact = useSelector(state => state.contactReducer.contactMessageReceiver);
 
     const sendMessage = (values) => {
-        MessageService.postMessageToContact(values, "63e9f087dfc9b67041ea4289", "00")
-        .then(
-            getMessage("63e9f087dfc9b67041ea4289")
+        MessageService.postMessageToContact(values, contact._id, "00")
+        .then( () =>
+            getMessage(contact._id)
         ).catch(
             (err) => console.log(err)
         )
     }
 
-    const selectContact = (contact) => {
-        setContactSelected(contact);
-        console.log("contact selected " + JSON.stringify(contact));
-    }
-
     const getMessage = (value) => {
        MessageService.getAllMessageFromContact(value)
        .then((value) => {
-            console.log(JSON.stringify(value.data));
-            setMessages(value.data);
+            store.dispatch({type:"message/addset", payload: value.data})
        });
     }
 
     return(
         <div className="core-component">
             <div className="contact-pannel">
-                <ContactLeftPannel handleContactClick={selectContact}></ContactLeftPannel>
+                <ContactLeftPannel></ContactLeftPannel>
+            </div>
+            <div className="contact-message-overview">
+                <ContactOverview />
             </div>
             <div className="message-pannel">
-                <ConversationView messages={messages}/>
+                <ConversationView />
             </div>
             <div className="editor-pannel">
                 <MessageEditor handleSubmit={sendMessage}></MessageEditor>

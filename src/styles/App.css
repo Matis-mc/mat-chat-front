@@ -5,7 +5,7 @@ html, body {
 
 .App {
   width: auto;
-  height: 90%;
+  height: 100%;
   display: grid;
   grid-template-columns: 7% 22% 29% 19% 18% 1%;
   grid-template-rows: 2% 18% 20% 20% 20% 18% 2%;
