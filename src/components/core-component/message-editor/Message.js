@@ -5,13 +5,10 @@ import Avatar from "boring-avatars";
 
 function Message(props){
 
-    console.log(props);
 
     const contact = useSelector(state => state.contactReducer.contactMessageReceiver);
 
     let type = "";
-
-    console.log( props.value.idUserEmitter)
 
     if(contact._id == props.value.idUserEmitter){
         type = "-received";

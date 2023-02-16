@@ -1,11 +1,27 @@
+.form-div{
+    display: grid;
+    height: 100%;
+    grid-template-columns: 90% 10%;
+    grid-template-rows: 100%;
+}
+
 .editor-div{
     margin-left: 10px;
     margin-right: 10px;
     border-radius: 20px;
     background-color: white;
-    padding-left: 25px;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start:1 ;
+    grid-row-end: 1;
     box-shadow: rgb(0 0 0 / 10%) 0px 20px 25px -5px, rgb(0 0 0 / 4%) 0px 10px 10px -5px;
 
+}
+
+.submit-div{
+    display: flex;
+    height: 70%;
+    justify-content: center;
 }
 
 .message-field{
@@ -19,15 +35,42 @@
 
 .send-btn {
     border-radius: 30px;
+    height: min-content;
     margin: 20px;
     padding-top: 15px;
     padding-bottom: 15px;
-    padding-right: 30px;
-    padding-left: 30px;
+    padding-right: 10px;
+    padding-left: 10px;
     border: dashed 3px #6494ed;
-    background-color: #f0f8ff;
+    background-color: white;
     color: cornflowerblue;
     cursor: pointer;
     box-shadow: rgb(0 0 0 / 10%) 0px 20px 25px -5px, rgb(0 0 0 / 4%) 0px 10px 10px -5px;
     font-weight: bold;
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start:1 ;
+    grid-row-end: 1;
+}
+
+.quill{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ql-toolbar.ql-snow{
+    align-self: center;
+    border:none;
+    margin-bottom: -25px;
+    margin-left: 30px;
+}
+
+.ql-toolbar.ql-snow + .ql-container.ql-snow{
+    border: none;
+}
+
+.ql-container.ql-snow {
+    border: none;
+    font-size: larger;
 }

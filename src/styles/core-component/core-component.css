@@ -2,7 +2,7 @@
     height: 100%;
     display: grid;
     grid-template-columns: 30% 70%;
-    grid-template-rows: 15% 70% 15%;
+    grid-template-rows: 8% 70% 22%;
     overflow: hidden;
 }
 
@@ -33,18 +33,34 @@ h2 {
     grid-row-start:2 ;
     grid-row-end: 2;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     overflow-y: scroll;
     overflow-x: hidden;
     scroll-behavior: smooth;
+    padding-bottom: 10px;
 }
 
+.message-pannel::-webkit-scrollbar {
+    width: 15px;               /* width of the entire scrollbar */
+  }
+  
+  .message-pannel::-webkit-scrollbar-track {
+    background: aliceblue;        /* color of the tracking area */
+  }
+  
+  .message-pannel::-webkit-scrollbar-thumb {
+    background-color: cornflowerblue;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 5px solid aliceblue;  /* creates padding around scroll thumb */
+  }
+
 .editor-pannel{
+    height: 70%;
     grid-column-start: 2;
     grid-column-end: 2;
     grid-row-start:3 ;
     grid-row-end: 3;
     align-self: center;
-    padding: 20px
+    padding: 10px
 }
 
