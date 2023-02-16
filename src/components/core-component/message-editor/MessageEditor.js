@@ -1,5 +1,6 @@
 import { Formik, Form, Field } from "formik";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 import "../../../styles/core-component/message-editor/message-editor.css"
 
 const MessageEditor = ({handleSubmit}) => {
@@ -23,6 +24,7 @@ const MessageEditor = ({handleSubmit}) => {
         >
             <Form>
                 <Field className="message-field" type="text" name="message" placeholder="Type a message here ..."/>
+
                 {contact._id ? 
                 <button className="send-btn" type="submit">SEND</button>: ""}
             </Form>
