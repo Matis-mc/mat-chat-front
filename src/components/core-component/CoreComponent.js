@@ -15,14 +15,14 @@ function CoreComponent(){
     const sendMessage = (values) => {
         MessageService.postMessageToContact(values, contact._id, "00")
         .then( () =>
-            getMessage(contact._id)
+            getMessage()
         ).catch(
             (err) => console.log(err)
         )
     }
 
-    const getMessage = (value) => {
-       MessageService.getAllMessageFromContact(value)
+    const getMessage = () => {
+       MessageService.getAllMessageFromContact(contact._id)
        .then((value) => {
             store.dispatch({type:"message/addset", payload: value.data})
        });

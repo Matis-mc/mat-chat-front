@@ -1,5 +1,7 @@
 import { useSelector } from "react-redux";
 import "../../../styles/core-component/message-editor/message.css"
+import Avatar from "boring-avatars";
+
 
 function Message(props){
 

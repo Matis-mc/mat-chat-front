@@ -1,0 +1,23 @@
+.profile-view-div{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.avatar-item{
+    margin-top: 50px;
+}
+
+.info-div{
+    background-color: white;
+    min-width: 200px;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: rgb(0 0 0 / 10%) 0px 20px 25px -5px, rgb(0 0 0 / 4%) 0px 10px 10px -5px;
+    display: flex;
+    align-content: center;
+}

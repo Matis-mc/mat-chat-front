@@ -4,6 +4,7 @@ import CoreComponent from '../components/core-component/CoreComponent';
 import {Navigate} from "react-router-dom"
 import AuthenticationManager from '../components/utils/AuthenticationManager';
 import { useState } from 'react';
+import ProfileView from '../components/profile-view/ProfileView';
 
 function Chat(){
 
@@ -22,7 +23,9 @@ function Chat(){
           <div className="core-div">
             <CoreComponent></CoreComponent>
           </div>
-          <div className="lat-menu-end"></div>
+          <div className="lat-menu-end">
+          < ProfileView/>
+          </div>
         </div>
       );
     }
