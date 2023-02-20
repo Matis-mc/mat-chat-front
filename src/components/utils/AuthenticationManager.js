@@ -65,7 +65,7 @@ class AuthenticationManager {
         try {
             this._user = jwtDecode(token);
         } catch (error) {
-            console.log(error);
+            console.error(error);
             alert(error.message);
         }
     }
