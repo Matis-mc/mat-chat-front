@@ -4,7 +4,7 @@ import { useState } from "react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import "../../../styles/core-component/message-editor/message-editor.css"
-import { formats } from "./ToolbarOptions";
+import {EditorToolbar, formats, modules} from "../../utils/EditorToolbar";
 
 
 
@@ -17,7 +17,8 @@ const MessageEditor = ({handleSubmit}) => {
     return(
     <div className="form-div">
         <div className="editor-div">
-            <ReactQuill theme="snow" value={value} onChange={setValue} formats={formats}/>           
+            <EditorToolbar />
+            <ReactQuill theme="snow" value={value} onChange={setValue} modules={modules} formats={formats}/>           
         </div>
         <div className="submit-div">
         {contact._id ? 
