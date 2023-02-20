@@ -16,7 +16,7 @@ const ContactLeftPannel = () => {
     const [contacts, setContacts] = useState([])
     const [error, setError] = useState(null);
 
-    useEffect(() => fetchData, [])
+    useEffect(() => fetchData, []);
 
     const fetchData = () => {
         ContactService.getContactsByIdUser()

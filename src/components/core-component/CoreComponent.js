@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { useSelector } from "react-redux";
+import { useInterval } from "../../hooks/useInterval";
 import { store } from "../../redux/store";
 import MessageService from "../../service/MessageService";
 import "../../styles/core-component/core-component.css"
@@ -15,18 +15,20 @@ function CoreComponent(){
     const sendMessage = (values) => {
         MessageService.postMessageToContact(values, contact._id, "00")
         .then( () =>
-            getMessage()
+        fetchMessage()
         ).catch(
             (err) => console.log(err)
         )
     }
 
-    const getMessage = () => {
+    const fetchMessage = () => {
        MessageService.getAllMessageFromContact(contact._id)
        .then((value) => {
             store.dispatch({type:"message/addset", payload: value.data})
        });
     }
+
+    useInterval(fetchMessage, 3000);
 
     return(
         <div className="core-component">

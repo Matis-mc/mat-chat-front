@@ -6,8 +6,6 @@ import 'react-quill/dist/quill.snow.css';
 import "../../../styles/core-component/message-editor/message-editor.css"
 import {EditorToolbar, formats, modules} from "../../utils/EditorToolbar";
 
-
-
 const MessageEditor = ({handleSubmit}) => {
 
     const contact = useSelector(state => state.contactReducer.contactMessageReceiver);
