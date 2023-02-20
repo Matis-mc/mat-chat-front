@@ -71,6 +71,22 @@
 }
 
 .ql-container.ql-snow {
+    max-height: 100px;
     border: none;
     font-size: larger;
+    overflow-y: scroll;
 }
+
+.ql-container::-webkit-scrollbar {
+    width: 15px;               /* width of the entire scrollbar */
+  }
+  
+.ql-container::-webkit-scrollbar-track {
+    background: white;        /* color of the tracking area */
+  }
+  
+.ql-container::-webkit-scrollbar-thumb {
+    background-color: cornflowerblue;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 5px solid white;  /* creates padding around scroll thumb */
+  }

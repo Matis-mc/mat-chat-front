@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import "../../../styles/core-component/message-editor/message.css"
 import Avatar from "boring-avatars";
-
+import Parser from 'html-react-parser'
 
 function Message(props){
 
@@ -18,7 +18,7 @@ function Message(props){
 
     return(
         <div className={"message-div".concat(type)}>
-            <p className={"message".concat(type)}>{props.value.content}</p>
+            <p className={"message".concat(type)}>{Parser(props.value.content)}</p>
         </div>
     )
 

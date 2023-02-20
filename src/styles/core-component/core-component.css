@@ -27,7 +27,8 @@ h2 {
 }
 
 .message-pannel{
-    height: 100%;
+    height: auto;
+    max-height: 55vh;
     grid-column-start: 2;
     grid-column-end: 2;
     grid-row-start:2 ;
@@ -37,18 +38,19 @@ h2 {
     overflow-y: scroll;
     overflow-x: hidden;
     scroll-behavior: smooth;
-    padding-bottom: 10px;
+    padding: 0% 2% 6% 2%;
+    margin: 2% 0% 0% 0%;
 }
 
 .message-pannel::-webkit-scrollbar {
     width: 15px;               /* width of the entire scrollbar */
   }
   
-  .message-pannel::-webkit-scrollbar-track {
+.message-pannel::-webkit-scrollbar-track {
     background: aliceblue;        /* color of the tracking area */
   }
   
-  .message-pannel::-webkit-scrollbar-thumb {
+.message-pannel::-webkit-scrollbar-thumb {
     background-color: cornflowerblue;    /* color of the scroll thumb */
     border-radius: 20px;       /* roundness of the scroll thumb */
     border: 5px solid aliceblue;  /* creates padding around scroll thumb */
