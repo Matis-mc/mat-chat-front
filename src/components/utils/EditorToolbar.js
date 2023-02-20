@@ -1,5 +1,6 @@
 import React from "react";
 import { Quill } from "react-quill";
+const DragAndDropModule = require('quill-drag-and-drop-module');
 
 // Custom Undo button icon component for Quill editor. You can import it directly
 // from 'quill/assets/icons/undo.svg' but I found that a number of loaders do not
@@ -63,6 +64,16 @@ export const modules = {
     delay: 500,
     maxStack: 100,
     userOnly: true
+  },
+  dragAndDrop: {
+    draggables: [
+        {
+          content_type_pattern: '^image/', // Any file with matching type will result in ...
+          tag: 'img', // ... an 'img' tag ...
+          attr: 'src' // ... with 'src' equal to the file's base64 (or the result of `onDrop` [see below]).
+        }
+      ]
+    
   }
 };
 
