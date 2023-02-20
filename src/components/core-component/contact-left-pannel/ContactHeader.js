@@ -10,13 +10,13 @@ function ContactHeader(props){
     //todo : search in contact
     const searchContact = (value) => {
         ChatService.searchContactByEmail(value)
-        .then((response) => {
-            console.log(response);
+        .then((res) => {
+            console.log(JSON.stringify(res));
         })
-        .catch(() => {
+        .catch((err) => {
             alert("Aucun utilisateur trouvé pour cet email : " + value)
+            console.error(err);
         })
-        console.log(value);
     }
 
     return(

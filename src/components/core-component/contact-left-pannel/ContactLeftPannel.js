@@ -34,15 +34,14 @@ const ContactLeftPannel = () => {
     }
 
     const handleAddUserSubmit = (value) => {
-        console.log("add user submiting");
         ContactService.addContactToUserByEmail(value).then(
             (res) => {
-                console.log(res);
+                console.log(JSON.stringify(res));
                 fetchData();
             }
         ).catch(
             (err) => {
-                console.log(err);
+                console.error(JSON.stringify(error));
                 alert(err);
             }
         )

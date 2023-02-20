@@ -12,7 +12,7 @@ function Subscribe(props){
   const submitSubscription = (values) => {
     UserService.subscribe(values.name, values.surname, values.email, values.password)
     .then((response) => {
-      console.log(response);
+      console.log(JSON.stringify(response));
       AuthenticationManager.updateToken(response.data.token);
       navigate("/");
     })

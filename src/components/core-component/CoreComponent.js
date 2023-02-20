@@ -17,7 +17,7 @@ function CoreComponent(){
         .then( () =>
         fetchMessage()
         ).catch(
-            (err) => console.log(err)
+            (err) => console.error(err)
         )
     }
 
