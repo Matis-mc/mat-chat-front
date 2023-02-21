@@ -71,6 +71,7 @@ class AuthenticationManager {
     }
 
     getId() {
+        console.log(JSON.stringify(this._user));
         if(this._user){
             return this._user.user_id;
         } else {

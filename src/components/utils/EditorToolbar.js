@@ -73,7 +73,6 @@ export const modules = {
           attr: 'src' // ... with 'src' equal to the file's base64 (or the result of `onDrop` [see below]).
         }
       ]
-    
   }
 };
 
