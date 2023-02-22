@@ -7,11 +7,8 @@ import Avatar from "boring-avatars"
 
 function NavBar(props){
 
-    const navigate = useNavigate();
-
     const logout = () => {
         AuthenticationManager.logout();
-        navigate("/login");
     }
 
     return(

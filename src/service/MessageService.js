@@ -6,34 +6,31 @@ const API_URL = "http://localhost:3030/message/";
 class MessageService {
 
     
-    token = AuthenticationManager.getAccessToken();
-    idUser = AuthenticationManager.getId();
-
-        _headers =  
-    {
-        'x-access-token': `${this.token}`
+    _buildHeader(){
+        let _headers = {'x-access-token': `${AuthenticationManager.getAccessToken()}`}
+        return _headers;
     }
 
     getAllMessageFromContact(_idContact){
-        return axios.post(API_URL + this.idUser, 
+        return axios.post(API_URL + AuthenticationManager.getId(), 
         {
             idContact: _idContact
         },
         {
-            headers: this._headers
+            headers: this._buildHeader()
         })
     }
 
     postMessageToContact(content, _idContact, _tag){
         return axios.post(API_URL, 
             {
-                idUser : this.idUser,
+                idUser : AuthenticationManager.getId(),
                 idContact : _idContact,
                 content: content,
                 tag:_tag
             },
             {
-                headers: this._headers
+                headers: this._buildHeader()
             })
     }
 }

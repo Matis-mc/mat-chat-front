@@ -22,13 +22,16 @@ function CoreComponent(){
     }
 
     const fetchMessage = () => {
+        if(!contact._id){
+            return
+        }
        MessageService.getAllMessageFromContact(contact._id)
        .then((value) => {
             store.dispatch({type:"message/addset", payload: value.data})
        });
     }
 
-    useInterval(fetchMessage, 3000);
+    useInterval(fetchMessage, 30000);
 
     return(
         <div className="core-component">

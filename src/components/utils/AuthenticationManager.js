@@ -1,9 +1,12 @@
 import jwtDecode from 'jwt-decode'
+import UserService from '../../service/UserService';
 const tokenKey = "token";
+const refreshTokenKey = "refreshToken";
 
 class AuthenticationManager {
 
     _token;
+    _refreshToken;
     _user = null;
     _userChangeReg = [];
     userChanged;
@@ -18,27 +21,27 @@ class AuthenticationManager {
 
     constructor() {
 
-            var token = window.localStorage.getItem(tokenKey);
-            if (token) {
-                token = JSON.parse(window.localStorage.getItem(tokenKey));
-            }
-            this._processToken(token);
-            window.addEventListener('storage', (event) => {
-                if (event.key === tokenKey) {
-                    var newToken = event.newValue;
-                    if (newToken) {
-                        newToken = JSON.parse(newToken);
-                    }
-
-                    this._processToken(newToken);
-                    this.tokenUpdated(newToken);
+        var token = window.localStorage.getItem(tokenKey);
+        if (token) {
+            token = JSON.parse(window.localStorage.getItem(tokenKey));
+        }
+        this._processToken(token);
+        window.addEventListener('storage', (event) => {
+            if (event.key === tokenKey) {
+                var newToken = event.newValue;
+                if (newToken) {
+                    newToken = JSON.parse(newToken);
                 }
-            }, false);
 
-            setInterval(
-                () => this.checkTokenExpiry(this)
-                , 60000
-            );
+                this._processToken(newToken);
+                this.tokenUpdated(newToken);
+            }
+        }, false);
+
+        setInterval(
+            () => this.checkTokenExpiry(this)
+            , 5000
+        );
         
     }
 
@@ -48,9 +51,16 @@ class AuthenticationManager {
             _this = this;
         }
         if (_this._user != null) {
-            let expired = _this._user.exp < (Date.now() - 1000 * 60 * 5) / 1000;
+            let expired = _this._user.exp < Date.now() / 1000;
             if (expired) {
-                //this.navigate("/login")
+                UserService.refresh(this.getRefreshToken()).then(
+                    (value) => {
+                        this.updateToken(value.data.token);
+                        this.updateRefreshToken(value.data.refreshToken);
+                    }
+                ).catch(
+                    this.logout()
+                )
             }
         }
         return Promise.resolve();
@@ -71,7 +81,6 @@ class AuthenticationManager {
     }
 
     getId() {
-        console.log(JSON.stringify(this._user));
         if(this._user){
             return this._user.user_id;
         } else {
@@ -98,6 +107,11 @@ class AuthenticationManager {
         }
     }
 
+    updateRefreshToken(refreshToken){
+        this._refreshToken = refreshToken;
+        window.localStorage.setItem(refreshTokenKey, JSON.stringify(refreshToken));
+    }
+
     getAccessToken() {
         let result = window.localStorage.getItem(tokenKey);
         if (!result) {
@@ -107,11 +121,11 @@ class AuthenticationManager {
     }
 
     getRefreshToken() {
-        let result = window.localStorage.getItem(tokenKey);
+        let result = window.localStorage.getItem(refreshTokenKey) ;
         if (!result) {
             return "";
         }
-        return JSON.parse(result).refreshToken;
+        return JSON.parse(result);
     }
 
     isLoggedIn(){
@@ -124,6 +138,8 @@ class AuthenticationManager {
 
     logout() {
         this.updateToken(null);
+        this.updateRefreshToken(null);
+        window.location.replace("http://localhost:3000/login")
     }
 }
 
