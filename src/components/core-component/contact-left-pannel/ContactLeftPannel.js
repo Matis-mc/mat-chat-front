@@ -4,9 +4,8 @@ import ContactHeader from "./ContactHeader";
 import Contact from "./Contact";
 import { useEffect, useState } from "react";
 import AddContactForm from "./AddContactForm";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
 import ContactService from "../../../service/ContactService";
+import {TiArrowRepeat} from "react-icons/ti"
 
 const ContactLeftPannel = () => {
     //todo : header
@@ -50,20 +49,19 @@ const ContactLeftPannel = () => {
     return(
     <div className="ctc-left-pannel-div">
         <AddContact handleClick={addUserClick} data-testid="add-ctc-comp"></AddContact>
-        {openAddUserModal ? <AddContactForm handleOnSubmit={handleAddUserSubmit}/> : <ContactHeader data-cy="contact-header"/>}
+        {openAddUserModal ? <AddContactForm handleOnSubmit={handleAddUserSubmit}/> : <ContactHeader data-cy="contact-header" contacts={contacts}/>}
         {error == null ?
         <div className="scrollable-view">
-            <p onClick={fetchData} className="refresh-text">Refresh</p>
+            <TiArrowRepeat
+            onClick = {fetchData} className="refresh-icon"/>
             {contacts.map(
                 (contact) => 
                 <Contact key={contact.name+contact.surname}
                 contact={contact}/>)
             }
         </div> : <div className="error-network-div">
-            <FontAwesomeIcon 
-            className = "refresh-icon" 
-            icon = {faArrowsRotate} 
-            onClick = {fetchData}/>
+            <TiArrowRepeat
+            onClick = {fetchData} className="refresh-icon"/>
             <p className = "error-network-message">{error.message}</p>
         </div>
         }

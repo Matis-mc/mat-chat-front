@@ -5,6 +5,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import "../../../styles/core-component/message-editor/message-editor.css"
 import {EditorToolbar, formats, modules} from "../../utils/EditorToolbar";
+import { TiLocationArrow } from "react-icons/ti"
 
 const MessageEditor = ({handleSubmit}) => {
 
@@ -20,7 +21,7 @@ const MessageEditor = ({handleSubmit}) => {
         </div>
         <div className="submit-div">
         {contact._id ? 
-                <button className="send-btn" type="submit" onClick={async () => {await handleSubmit(value); setValue('')}}>SEND</button>: ""}
+                <button className="send-btn" type="submit" onClick={async () => {await handleSubmit(value); setValue('')}}><TiLocationArrow className="editor-icon"/></button>: ""}
         </div>
     </div>)
 

@@ -1,9 +1,7 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../styles/nav-bar/nav-bar.css"
-import { faMessage } from "@fortawesome/free-solid-svg-icons";
 import AuthenticationManager from "../utils/AuthenticationManager";
-import { useNavigate } from "react-router-dom";
 import Avatar from "boring-avatars"
+import { TiMessage, TiPower } from "react-icons/ti";
 
 function NavBar(props){
 
@@ -22,9 +20,9 @@ function NavBar(props){
                 /> 
                 <p className="email-p">{AuthenticationManager.getEmail()}</p>
             </div>           
-            <FontAwesomeIcon className="icon" icon="fa-arrow-right-from-bracket" 
+            <TiPower className="nav-bar-icon"
             onClick={logout}/>
-            <FontAwesomeIcon className="icon" icon={faMessage} ></FontAwesomeIcon>
+            <TiMessage className="nav-bar-icon"/>
         </div>
     )
 }

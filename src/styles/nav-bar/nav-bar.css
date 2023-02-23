@@ -4,6 +4,8 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    color: white;
+
 }
 
 .avatar-div{
@@ -16,7 +18,7 @@
     cursor: pointer;
 }
 
-.icon {
+.nav-bar-icon {
     width: 60px;
     height: 60px;
     cursor: pointer;

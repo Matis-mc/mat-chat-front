@@ -5,6 +5,12 @@
     grid-template-rows: 100%;
 }
 
+.editor-icon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
 .editor-div{
     margin-left: 10px;
     margin-right: 10px;

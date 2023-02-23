@@ -37,8 +37,32 @@ class ContactService {
             user_id:  AuthenticationManager.getId()
         },
         {
-            headers : this._buildHeader()
+            headers: this._buildHeader()
         });
+    }
+
+    addContactToFavorite(_idContact){
+        return axios.post(API_URL + "/favorite/add",
+        {
+            contact_id: _idContact,
+            user_id:  AuthenticationManager.getId()
+        },
+        {
+            headers: this._buildHeader()
+        }
+        )
+    }
+    
+    removeContactToFavorite(_idContact){
+        return axios.post(API_URL + "/favorite/remove",
+        {
+            contact_id: _idContact,
+            user_id:  AuthenticationManager.getId()
+        },
+        {
+            headers: this._buildHeader()
+        }
+        )
     }
 
 }
