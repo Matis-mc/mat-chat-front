@@ -10,6 +10,12 @@
     flex-direction: row;
     justify-content: space-around;
     cursor: pointer;
+    align-items: center;
+}
+
+.ctc-sub-div {
+    display: flex;
+    flex-direction: row;
 }
 
 .ctc-div-active{
@@ -31,4 +37,12 @@
 .ctc-div:hover{
     background-color: aliceblue;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+
+
+.fav-star-icon{
+    height: 30px;
+    width: 30px;
+    color: cornflowerblue;
+    cursor: default ;
 }

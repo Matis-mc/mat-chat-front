@@ -1,7 +1,5 @@
 const initialstate = {
-    messagesToDisplay : [
-
-    ]
+    messagesToDisplay : []
 }
 
 export default function messageReducer(state = initialstate, action) {
@@ -9,7 +7,7 @@ export default function messageReducer(state = initialstate, action) {
         case "message/addset":
             return {...state, 
                 messagesToDisplay: action.payload
-                };
+            };
         default:
             return state;
     }

@@ -1,6 +1,5 @@
 import axios from "axios";
 import AuthenticationManager from "../components/utils/AuthenticationManager";
-import MatChatService from "./MatChatService";
 
 const API_URL = "http://localhost:3030/contact/";
 
@@ -42,7 +41,7 @@ class ContactService {
     }
 
     addContactToFavorite(_idContact){
-        return axios.post(API_URL + "/favorite/add",
+        return axios.post(API_URL + "favorite/add",
         {
             contact_id: _idContact,
             user_id:  AuthenticationManager.getId()
@@ -54,7 +53,7 @@ class ContactService {
     }
     
     removeContactToFavorite(_idContact){
-        return axios.post(API_URL + "/favorite/remove",
+        return axios.post(API_URL + "favorite/remove",
         {
             contact_id: _idContact,
             user_id:  AuthenticationManager.getId()
