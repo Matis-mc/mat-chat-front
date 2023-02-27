@@ -1,10 +1,8 @@
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useInterval } from "../../hooks/useInterval";
 import { store } from "../../redux/store";
 import MessageService from "../../service/MessageService";
 import "../../styles/core-component/core-component.css"
-import AuthenticationManager from "../utils/AuthenticationManager";
 import ContactLeftPannel from "./contact-left-pannel/ContactLeftPannel";
 import ContactOverview from "./contact-overview/ContactOverview";
 import ConversationView from "./message-editor/ConversationView";
@@ -13,10 +11,6 @@ import MessageEditor from "./message-editor/MessageEditor";
 function CoreComponent(){
 
     const contact = useSelector(state => state.contactReducer.contactMessageReceiver);
-
-    useEffect(() => {
-        AuthenticationManager.checkTokenExpiry();
-    })
 
     const sendMessage = (values) => {
         MessageService.postMessageToContact(values, contact._id, "00")

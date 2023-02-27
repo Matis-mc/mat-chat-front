@@ -5,19 +5,16 @@ import { store } from "../../../redux/store";
 import MessageService from "../../../service/MessageService";
 import { TiStarOutline, TiStar } from "react-icons/ti";
 import ContactService from "../../../service/ContactService";
-import { useState } from "react";
 
 const Contact = (props) => {
 
-    const [contact, setContact] = useState(props.contact);
-
     const onContactClick = () => {
-        store.dispatch({type:"contact/select", payload: contact});
+        store.dispatch({type:"contact/select", payload: props.contact});
         getMessage();
     }
 
     const getMessage = () => {
-        MessageService.getAllMessageFromContact(contact._id).then(
+        MessageService.getAllMessageFromContact(props.contact._id).then(
             (value) => {
                 store.dispatch({type:"message/addset", payload: value.data})
             }
@@ -25,23 +22,18 @@ const Contact = (props) => {
     }
 
     const addFavorite = () => {
-        console.log(contact._id);
-        ContactService.addContactToFavorite(contact._id).then(
-            () => {
-                contact.isFavorite = true;
-                setContact(contact);
-            }
+        console.log(props.contact._id);
+        ContactService.addContactToFavorite(props.contact._id).then(
+            () => props.handleRefresh()
+
         ).catch((err) => {
             console.error(err)
         })
     }
 
     const removeFavorite = () => {
-        ContactService.removeContactToFavorite(contact._id).then(
-            () => {
-                contact.isFavorite = false;
-                setContact(contact);
-            }
+        ContactService.removeContactToFavorite(props.contact._id).then(
+            () => props.handleRefresh()
         ).catch((err) => {
             console.error(err)
         })
@@ -52,13 +44,13 @@ const Contact = (props) => {
             <div onClick={() => onContactClick()} className="ctc-sub-div">
                 <Avatar
                 size={45}
-                name={contact.email}
+                name={props.contact.email}
                 variant="beam"
                 colors={["#E8D5B7", "#6494ED", "#F0F8FF", "#F54979", "#ffffff"]}
                 />
-                <ContactInfoDescription contact={contact}/>
+                <ContactInfoDescription contact={props.contact}/>
             </div>
-            {contact.isFavorite?<TiStar className="fav-star-icon" onClick={() => removeFavorite()}/>:<TiStarOutline className="fav-star-icon" onClick={() => addFavorite()}/>}
+            {props.contact.isFavorite?<TiStar className="fav-star-icon" onClick={() => removeFavorite()}/>:<TiStarOutline className="fav-star-icon" onClick={() => addFavorite()}/>}
         </div>
     )
 }

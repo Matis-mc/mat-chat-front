@@ -6,22 +6,25 @@ import { useEffect, useState } from "react";
 import AddContactForm from "./AddContactForm";
 import ContactService from "../../../service/ContactService";
 import {TiArrowRepeat} from "react-icons/ti"
+import { store } from "../../../redux/store";
+import { useSelector } from "react-redux";
 
 const ContactLeftPannel = () => {
     //todo : header
     //todo searchBAr
 
+    const listContacts = useSelector(state => state.listContactsReducer.contacts)
+
     const [openAddUserModal, setOpenAddUserModal] = useState(false); 
-    const [contacts, setContacts] = useState([])
     const [error, setError] = useState(null);
 
-    useEffect(() => fetchData, []);
+    useEffect(() => fetchContacts, []);
 
-    const fetchData = () => {
+    const fetchContacts = () => {
+        console.log("fetch contacts");
         ContactService.getContactsByIdUser()
             .then((response) => {
-                setContacts(response.data);
-                setError(null);
+                store.dispatch({type:"contacts/setlist", payload: response.data})
             })
             .catch((error) => {
                 setError(error);
@@ -36,7 +39,7 @@ const ContactLeftPannel = () => {
         ContactService.addContactToUserByEmail(value).then(
             (res) => {
                 console.log(JSON.stringify(res));
-                fetchData();
+                fetchContacts();
             }
         ).catch(
             (err) => {
@@ -49,24 +52,23 @@ const ContactLeftPannel = () => {
     return(
     <div className="ctc-left-pannel-div">
         <AddContact handleClick={addUserClick} data-testid="add-ctc-comp"></AddContact>
-        {openAddUserModal ? <AddContactForm handleOnSubmit={handleAddUserSubmit}/> : <ContactHeader data-cy="contact-header" contacts={contacts}/>}
+        {openAddUserModal ? <AddContactForm handleOnSubmit={handleAddUserSubmit}/> : <ContactHeader data-cy="contact-header" contacts={listContacts}/>}
         {error == null ?
         <div className="scrollable-view">
-            <TiArrowRepeat
-            onClick = {fetchData} className="refresh-icon"/>
-            {contacts.map(
+            <TiArrowRepeat onClick = {fetchContacts} className="refresh-icon"/>
+            {listContacts.map(
                 (contact) => 
                 <Contact key={contact.name+contact.surname}
-                contact={contact}/>)
+                contact={contact}
+                handleRefresh={fetchContacts}/>)
             }
         </div> : <div className="error-network-div">
             <TiArrowRepeat
-            onClick = {fetchData} className="refresh-icon"/>
+            onClick = {fetchContacts} className="refresh-icon"/>
             <p className = "error-network-message">{error.message}</p>
         </div>
         }
-    </div>
-    )
+    </div>)
 
 }
 
