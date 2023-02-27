@@ -59,7 +59,10 @@ class AuthenticationManager {
                         this.updateRefreshToken(value.data.refreshToken);
                     }
                 ).catch(
-                    this.logout()
+                    (err) => {
+                        alert(err)
+                        this.logout()
+                    }
                 )
             }
         }
@@ -77,6 +80,7 @@ class AuthenticationManager {
         } catch (error) {
             console.error(error);
             alert(error.message);
+            this.logout()
         }
     }
 

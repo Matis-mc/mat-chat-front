@@ -6,6 +6,7 @@ import { TiMessage, TiPower } from "react-icons/ti";
 function NavBar(props){
 
     const logout = () => {
+        console.log("logout !")
         AuthenticationManager.logout();
     }
 
@@ -21,7 +22,7 @@ function NavBar(props){
                 <p className="email-p">{AuthenticationManager.getEmail()}</p>
             </div>           
             <TiPower className="nav-bar-icon"
-            onClick={() => logout}/>
+            onClick={() => logout()}/>
             <TiMessage className="nav-bar-icon"/>
         </div>
     )

@@ -28,7 +28,7 @@ function Subscribe(props){
       <div className="subscribe-form">
         <h1>Subscribe</h1>
         <Formik
-          initialValues={{ name: "test", surname:"test", email:"test@email.com", password: "test" }}
+          initialValues={{ name: "", surname:"", email:"", password: "" }}
           validate={values => {
             const errors = {};
             if (!values.email) {

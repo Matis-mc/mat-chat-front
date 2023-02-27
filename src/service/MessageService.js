@@ -22,17 +22,37 @@ class MessageService {
     }
 
     postMessageToContact(content, _idContact, _tag){
-        return axios.post(API_URL, 
-            {
-                idUser : AuthenticationManager.getId(),
-                idContact : _idContact,
-                content: content,
-                tag:_tag
-            },
-            {
-                headers: this._buildHeader()
-            })
+        if( _idContact=="63fcc21115b473c716b4c581"){
+             this.sendMessageToBot(content);
+        } else {
+            this.sendMessageToContact(content, _idContact, _tag)
+        }
+
     }
+
+    sendMessageToContact(content, _idContact, _tag){
+        return axios.post(API_URL, 
+        {
+            idUser : AuthenticationManager.getId(),
+            idContact : _idContact,
+            content: content,
+            tag:_tag
+        },
+        {
+            headers: this._buildHeader()
+        })
+    }
+
+    sendMessageToBot(content){
+        return axios.post(API_URL + "/ai", 
+        {
+            content: content,
+        },
+        {
+            headers: this._buildHeader()
+        })
+    }
+
 }
 
 export default new MessageService();
